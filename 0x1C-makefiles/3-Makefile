@@ -1,0 +1,26 @@
+CC=gcc
+NAME=school
+SRC=main.c school.c
+OBJ=$(SRC:.c=.o) # defines the corresponding object file for each source file
+RM=rm -f
+
+all:$(SRC) $(NAME)
+
+# create executable file
+# $@ represents the target name (executable name)
+# $^ represents the object files of the target
+$(NAME): $(OBJ)
+	$(CC) -o $@ $^
+
+# deletes all Emacs and Vim temporary files along with the executable
+clean:
+	$(RM) *~ $(NAME)
+
+# deletes object files
+oclean:
+	$(RM) $(OBJ)
+
+fclean:
+	$(RM) *~ $(NAME) $(OBJ)
+
+re: oclean all
